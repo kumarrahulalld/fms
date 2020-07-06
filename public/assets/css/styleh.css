@@ -1,0 +1,146 @@
+body{
+    background:#E0E5EC;
+    font-family: 'Tw Cen MT';
+}
+.nav-link{
+    border-radius: 50%;
+    justify-content: center;
+    width: 50px;
+    height:50px;
+    margin-left: 10px;
+    background-color:#E0E5EC;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+.nav-link:hover{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+              
+}
+.nav-item h5{
+    font-size: medium;
+    border-radius: 20px;
+    background-color:#E0E5EC;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+  
+
+}
+.nav-item h5:hover{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+  
+}
+
+
+.btn-circle.btn-xl {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 14px;
+  line-height: 1.33;
+  box-shadow:  9px 9px 16px rgb(163,177,198,0.6),  -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+  box-shadow:  9px 9px 16px rgb(163,177,198,0.6),  -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+
+
+
+
+.nav-item h2{
+  height: fit-content;
+  width:fit-content; 
+  padding:20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  font-size: larger;
+  text-align: center;
+  border-radius: 20px;
+  background-color:#E0E5EC;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+ 
+
+}
+.nav-item h2:hover{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset  -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+.nav-item p{
+  height: fit-content;
+  width:fit-content; 
+  padding: 10px;
+  border-radius: 20px;
+  background-color:#E0E5EC;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+
+}
+.nav-item p:hover{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+  .container .card{
+    border-radius: 40px;
+    background-color:#E0E5EC;
+    box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+  }
+  
+  .container .card:hover{
+    background-color:#E0E5EC;
+  box-shadow:  9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);           
+  }
+  
+
+.avatar .img-fluid{
+  width:300px;
+  height: 300px;
+}
+
+
+.carousel
+{
+    margin: 20px;
+    padding: 10px;
+    background-color:#E0E5EC;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+.carousel:hover
+{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+.carousel-inner
+{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6),inset  -9px -9px 16px    rgba(255,255,255, 0.5);
+                
+}
+
+.carousel-inner:hover
+{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6),inset  -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+.d-block
+{
+  background-color:#E0E5EC;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+}
+
+.d-block:hover
+{
+  background-color:#E0E5EC;
+  box-shadow: inset 9px 9px 16px rgb(163,177,198,0.6), inset -9px -9px 16px    rgba(255,255,255, 0.5);
+}

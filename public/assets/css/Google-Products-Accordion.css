@@ -1,0 +1,130 @@
+body {
+  background-color: #fafafa;
+}
+
+#apps {
+  color: #757575;
+  font: 300 normal 16px Roboto, Arial, Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media (min-width:1200px) {
+  #apps.container {
+    width: 1200px;
+  }
+}
+
+@media (min-width:1440px) {
+  #apps.container {
+    width: 1440px;
+  }
+}
+
+#apps .row.is-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#apps .row.is-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+#apps .row.is-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+#apps .row.is-flex > [class*='col-'] {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#apps .panel-group .panel + .panel {
+  margin-top: 0;
+  border: none;
+}
+
+.panel-apps {
+  border: none;
+}
+
+#apps .panel-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+#apps .panel-title a:hover, .panel-title a:focus {
+  text-decoration: none;
+}
+
+#apps .panel-title .material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: .5em;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+
+.panel-apps > .panel-heading {
+  background-color: #4285F4;
+  background-image: none;
+  border-radius: 0;
+  padding: 20px 4%;
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid #247cf3;
+}
+
+.panel-apps > .panel-heading:hover {
+  background-color: #508EF5;
+}
+
+.app {
+  margin: 15px auto;
+}
+
+.app a {
+  display: block;
+}
+
+.app a:hover {
+  text-decoration: none;
+}
+
+.app img {
+  display: block;
+  margin: 0 auto;
+}
+
+.app span {
+  display: block;
+  padding-top: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.app a span {
+  color: #757575;
+}
+
+.app a:hover span {
+  color: #9e9e9e;
+}
+
