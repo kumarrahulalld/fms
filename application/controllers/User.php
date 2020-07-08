@@ -29,7 +29,30 @@ public function addacc()
         $this->load->view('addaccess',$data);
 }
 
+public function get_suser()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_showuser($this->input->post('user'));
+}
 
+public function get_saccess()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_showaccess($this->input->post('user'));
+}
+
+public function get_sdep()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_showdep($this->input->post('dep'));
+}
+
+
+public function get_srole()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_showrole($this->input->post('role'));
+}
 
 public function remacc()
 {
@@ -299,6 +322,34 @@ public function rAccess()
     else{
         $this->remacc();
     }  
+}
+
+public function suser()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_user();
+        $this->load->view('showUser',$data);
+}
+
+public function saccess()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_user();
+        $this->load->view('showAccess',$data);
+}
+
+public function srole()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_role();
+        $this->load->view('showRole',$data);
+}
+
+public function sdep()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_dep();
+        $this->load->view('showDep',$data);
 }
 
     public function update()

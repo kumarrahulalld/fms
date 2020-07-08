@@ -94,6 +94,153 @@ function get_arole($user,$dep){
         $query = $this->db->query("SELECT * FROM Users WHERE Status='1'");
         return $query->result();
     }
+function get_showuser($user)
+{
+
+    if($user==="all")
+    {
+        $q=$this->db->select("*")
+        ->get('users');
+    }
+    else{
+$q=$this->db->select("*")
+->where('ID',$user)
+->get('users');
+    }
+    $out='  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Department</th>
+      <th scope="col">Role</th>
+      <th scope="col">Active</th>
+    </tr>
+  </thead> <tbody>';
+    foreach($q->result() as $row)
+    {
+        $out.='<tr>
+        <th>"'.$row->ID.'"</th>
+        <th>"'.$row->NAME.'"</th>
+        <th>"'.$row->EMAIL.'"</th>
+        <th>"'.$row->PHONE.'"</th>
+        <th>"'.$row->DEPARTMENT.'"</th>
+        <th>"'.$row->ROLE.'"</th>
+        <th>"'.$row->Status.'"</th>
+      </tr>';
+    }
+    $out.='</tbody>';
+    return $out;
+
+}
+
+
+
+function get_showaccess($user)
+{
+
+    if($user==="all")
+    {
+        $q=$this->db->select("*")
+        ->get('access');
+    }
+    else{
+$q=$this->db->select("*")
+->where('user',$user)
+->get('access');
+    }
+    $out='  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User</th>
+      <th scope="col">Department</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead> <tbody>';
+    foreach($q->result() as $row)
+    {
+        $out.='<tr>
+        <th>"'.$row->ID.'"</th>
+        <th>"'.$row->user.'"</th>
+        <th>"'.$row->department.'"</th>
+        <th>"'.$row->role.'"</th>
+      </tr>';
+    }
+    $out.='</tbody>';
+    return $out;
+
+}
+
+
+
+
+function get_showrole($user)
+{
+
+    if($user==="all")
+    {
+        $q=$this->db->select("*")
+        ->get('roles');
+    }
+    else{
+$q=$this->db->select("*")
+->where('ID',$user)
+->get('roles');
+    }
+    $out='  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Role</th>
+    </tr>
+  </thead> <tbody>';
+    foreach($q->result() as $row)
+    {
+        $out.='<tr>
+        <th>"'.$row->ID.'"</th>
+        <th>"'.$row->Role.'"</th>
+      </tr>';
+    }
+    $out.='</tbody>';
+    return $out;
+
+}
+
+
+
+
+function get_showdep($dep)
+{
+
+    if($dep==="all")
+    {
+        $q=$this->db->select("*")
+        ->get('department');
+    }
+    else{
+$q=$this->db->select("*")
+->where('ID',$dep)
+->get('department');
+    }
+    $out='  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead> <tbody>';
+    foreach($q->result() as $row)
+    {
+        $out.='<tr>
+        <th>"'.$row->ID.'"</th>
+        <th>"'.$row->Department.'"</th>
+      </tr>';
+    }
+    $out.='</tbody>';
+    return $out;
+
+}
+
+
 
     function getUdetail($uid)
     {

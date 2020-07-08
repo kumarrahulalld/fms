@@ -187,11 +187,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
         <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/forgot">Forgot Password</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-danger waves-effect">Generate User Reports</button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/suser">User Details</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-info waves-effect">Generate Files Report</button>
-        <button type="button" class="btn btn-outline-primary waves-effect">Upcoming</button>
-
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/sdep">Department Details</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/User/srole">Role Details</a></button>
+        <button type="button" class="btn btn-outline-orange waves-effect"><a href="http://localhost/fms/User/saccess">User Access Details</a></button>
       </div>
 
     </div>
