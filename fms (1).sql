@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2020 at 06:58 PM
+-- Generation Time: Jul 08, 2020 at 06:49 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,6 +21,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `fms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `access`
+--
+
+CREATE TABLE `access` (
+  `ID` int(11) NOT NULL,
+  `user` varchar(30) NOT NULL,
+  `department` varchar(30) NOT NULL,
+  `role` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -95,6 +108,12 @@ INSERT INTO `users` (`ID`, `NAME`, `EMAIL`, `PHONE`, `DEPARTMENT`, `PASSWORD`, `
 --
 
 --
+-- Indexes for table `access`
+--
+ALTER TABLE `access`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
@@ -116,6 +135,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `access`
+--
+ALTER TABLE `access`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `department`
