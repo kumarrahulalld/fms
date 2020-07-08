@@ -20,6 +20,34 @@ public function select()
         $this->load->view('selectUser',$data);
 }
 
+public function addacc()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_user();
+        $data['dep'] = $this->User_Model->get_dep();
+        $data['role'] = $this->User_Model->get_role();
+        $this->load->view('addaccess',$data);
+}
+
+
+
+public function remacc()
+{
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_user();
+        $this->load->view('removeaccess',$data);
+}
+public function get_dep()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_adep($this->input->post('user'));
+}
+
+public function get_role()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_arole($this->input->post('user'),$this->input->post('dep'));
+}
 public function forgot()
 {
     $this->load->model('User_Model');
@@ -204,6 +232,73 @@ public function proceed()
         else{
             $this->index();
         }
+}
+
+
+public function aAccess()
+{
+    $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules("user","User","required");
+        $this->form_validation->set_rules("dep","Department","required");
+        $this->form_validation->set_rules("role","Role","required");
+        if($this->form_validation->run())
+		{
+            $this->load->model('User_Model');
+            $user=$this->input->post('user');
+            $dep=$this->input->post('dep');
+            $role=$this->input->post('role');
+            $val=$this->User_Model->addac($user,$dep,$role);
+            if($val==-1)
+            {
+                echo "<script>alert('This Access Has Already Been Assigned To The User.')</script>";
+                $this->addacc();
+            }
+            elseif($val==1)
+            {
+                echo "<script>alert('Access Successfully Assigned To The User.')</script>";
+                $this->addacc();
+            }
+            else
+            {
+                echo "<script>alert('Something Went Wrong Try Again.')</script>";
+                $this->addacc();
+            }
+        }
+        else{
+            $this->addacc();
+        }
+}
+
+
+public function rAccess()
+{
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules("user","User","required");
+    $this->form_validation->set_rules("dep","Department","required");
+    $this->form_validation->set_rules("role","Role","required");
+    if($this->form_validation->run())
+    {
+        $this->load->model('User_Model');
+        $user=$this->input->post('user');
+        $dep=$this->input->post('dep');
+        $role=$this->input->post('role');
+        $val=$this->User_Model->remac($user,$dep,$role);
+        if($val==1)
+        {
+            echo "<script>alert('Access Removed Successfully.')</script>";
+            $this->remacc();
+        }
+        else
+        {
+            echo "<script>alert('Something Went Wrong Try Again.')</script>";
+            $this->remacc();
+        }
+    }
+    else{
+        $this->remacc();
+    }  
 }
 
     public function update()

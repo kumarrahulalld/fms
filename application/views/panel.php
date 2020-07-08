@@ -154,9 +154,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
         <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/Addrol">Add Role</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-danger waves-effect">Add Access</button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/addacc">Add Access</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-info waves-effect">Remove Access</button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/remacc">Remove Access</a></button>
 
       </div>
 
@@ -196,10 +196,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </div>
 </div>
-<script src="<?php echo base_url(); ?>public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
 
 </body>
 </html>
