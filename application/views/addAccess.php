@@ -49,36 +49,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <!-- Edit Form -->
                 <form method="post" action="http://localhost/fms/User/aAccess">
-                <div class="row">
-
-                  
-<!-- First column -->
-<div class="col-md-12">
-  <div class="md-form mb-0">
-      <h4 class="text-center">Select User</h4>
-    <select class="browser-default custom-select custom-select-md" name="user" id="user" value="<?php echo set_select('user'); ?>">
-        <option value="" disabled>Select User</option>
-        <?php 
-
-foreach($user as $row)
-{ 
-  echo '<option value="'.$row->ID.'">'.$row->NAME.'</option>';
-}
-?>
-    </select>
-    <span class="text-danger wrap-text"><?php echo form_error('user');?></span>
-  </div>
-</div>
-</div>
 <div class="row">
-
-                  
 <!-- First column -->
 <div class="col-md-12">
   <div class="md-form mb-0">
-      <h4 class="text-center">Select Department</h4>
+      <h4 class="text-center">Select From Department</h4>
     <select class="browser-default custom-select custom-select-md" name="dep" id="dep" value="<?php echo set_select('dep'); ?>">
-        <option value="" disabled>Select Department</option>
+        <option value="" disabled>Select  Department</option>
         <?php 
 
 foreach($dep as $row)
@@ -97,18 +74,46 @@ foreach($dep as $row)
 <!-- First column -->
 <div class="col-md-12">
   <div class="md-form mb-0">
-      <h4 class="text-center">Select Role</h4>
+      <h4 class="text-center">Select From Role</h4>
     <select class="browser-default custom-select custom-select-md" name="role" id="role" value="<?php echo set_select('role'); ?>">
         <option value="" disabled>Select Role</option>
+    </select>
+    <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
+  </div>
+</div>
+</div>
+
+
+<div class="row">
+<!-- First column -->
+<div class="col-md-12">
+  <div class="md-form mb-0">
+      <h4 class="text-center">Select To Department</h4>
+    <select class="browser-default custom-select custom-select-md" name="tdep" id="tdep" value="<?php echo set_select('tdep'); ?>">
+        <option value="" disabled>Select Department</option>
         <?php 
 
-foreach($role as $row)
+foreach($dep as $row)
 { 
-  echo '<option value="'.$row->Role.'">'.$row->Role.'</option>';
+  echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
 }
 ?>
     </select>
-    <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
+    <span class="text-danger wrap-text"><?php echo form_error('tdep');?></span>
+  </div>
+</div>
+</div>
+<div class="row">
+
+                  
+<!-- First column -->
+<div class="col-md-12">
+  <div class="md-form mb-0">
+      <h4 class="text-center">Select To Role</h4>
+    <select class="browser-default custom-select custom-select-md" name="trole" id="trole" value="<?php echo set_select('trole'); ?>">
+        <option value="" disabled>Select Role</option>
+    </select>
+    <span class="text-danger wrap-text"><?php echo form_error('trole');?></span>
   </div>
   <button type="submit" class="btn btn-outline-primary m-4">Procced</button>
 </div>
@@ -122,5 +127,37 @@ foreach($role as $row)
     <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
+<script>
+    $(document).ready(function(){
+    $('#dep').change(function(){
+      var u=$('#dep').val();
+      $.ajax({
+        url:"http://localhost/fms/User/get_addrole",
+        method:"POST",
+        data:{dep:u},
+        success:function(data)
+        {
+          $('#role').html(data);
+        }
+      });
+    });
+
+
+    $('#tdep').change(function(){
+      var u=$('#tdep').val();
+      $.ajax({
+        url:"http://localhost/fms/User/get_addrole",
+        method:"POST",
+        data:{dep:u},
+        success:function(data)
+        {
+          $('#trole').html(data);
+        }
+      });
+    });
+    
+  });
+</script>
+
 </body>
 </html>

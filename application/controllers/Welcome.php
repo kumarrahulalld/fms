@@ -51,10 +51,8 @@ class Welcome extends CI_Controller {
 				$this->session->set_userdata('ROLE', $id->ROLE);
 				$this->session->set_userdata('USER', $id->EMAIL);
 				$this->session->set_userdata('SECU', $id->gauthkey);
-				if($id->ROLE==2)
+				$this->session->set_userdata('isa',$id);
 				redirect('Authenticator/index');
-				else
-				print_r($id);
 
 			
 

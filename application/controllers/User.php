@@ -7,7 +7,6 @@ class User extends CI_Controller {
         
         $this->load->model('User_Model');
         $data['dep'] = $this->User_Model->get_dep();
-        $data['role'] = $this->User_Model->get_role();
         $this->load->view('addUser',$data);
       
 		//$this->login();
@@ -38,7 +37,7 @@ public function get_suser()
 public function get_saccess()
 {
     $this->load->model('User_Model');
-    echo $this->User_Model->get_showaccess($this->input->post('user'));
+    echo $this->User_Model->get_showaccess($this->input->post('dep'),$this->input->post('role'));
 }
 
 public function get_sdep()
@@ -51,13 +50,13 @@ public function get_sdep()
 public function get_srole()
 {
     $this->load->model('User_Model');
-    echo $this->User_Model->get_showrole($this->input->post('role'));
+    echo $this->User_Model->get_showrole($this->input->post('role'),$this->input->post('dep'));
 }
 
 public function remacc()
 {
     $this->load->model('User_Model');
-        $data['user'] = $this->User_Model->get_user();
+        $data['user'] = $this->User_Model->get_dep();
         $this->load->view('removeaccess',$data);
 }
 public function get_dep()
@@ -69,7 +68,31 @@ public function get_dep()
 public function get_role()
 {
     $this->load->model('User_Model');
-    echo $this->User_Model->get_arole($this->input->post('user'),$this->input->post('dep'));
+    echo $this->User_Model->get_arole($this->input->post('dep'));
+}
+public function get_tdep()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_tdep($this->input->post('dep'),$this->input->post('role'));
+}
+
+public function get_trole()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_arole($this->input->post('dep'));
+}
+
+
+public function get_torole()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_trole($this->input->post('dep'),$this->input->post('role'),$this->input->post('tdep'));
+}
+
+public function get_addrole()
+{
+    $this->load->model('User_Model');
+    echo $this->User_Model->get_addrole($this->input->post('dep'));
 }
 public function forgot()
 {
@@ -152,7 +175,9 @@ public function AddDep()
 
 public function Addrol()
 {
-    $this->load->view('addRole');
+    $this->load->model('User_Model');
+        $data['user'] = $this->User_Model->get_dep();
+    $this->load->view('addRole',$data);
 }
 
 public function adddepart()
@@ -186,18 +211,25 @@ public function addrole()
 {
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
-    $this->form_validation->set_rules("role","Role Name","required|alpha|is_unique[roles.Role]");
+    $this->form_validation->set_rules("dep","Department Name","required");
+    $this->form_validation->set_rules("role","Role Name","required|alpha");
     if($this->form_validation->run())
     {
         $this->load->model('User_Model');
-        $data=array("Role"=>$this->input->post('role'));
-        if($this->User_Model->AddRol($data))
+        $data=array("Role"=>$this->input->post('role'),"Department"=>$this->input->post('dep'));
+        $r=$this->User_Model->AddRol($data,$this->input->post('dep'),$this->input->post('role'));
+        if($r==1)
         {
             echo "<script>alert('Role Added Successfully.')</script>";
             $this->load->view('addRole');
         }
-        else{
-            echo "<script>alert('Try Again .')</script>";
+        else if($r==-1){
+            echo "<script>alert('Role Already Exists.')</script>";
+            $this->load->view('addRole');
+        }
+        else
+        {
+            echo "<script>alert('Something Went Wrong Try Again!.')</script>";
             $this->load->view('addRole');
         }
     }
@@ -262,16 +294,18 @@ public function aAccess()
 {
     $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-        $this->form_validation->set_rules("user","User","required");
-        $this->form_validation->set_rules("dep","Department","required");
-        $this->form_validation->set_rules("role","Role","required");
+        $this->form_validation->set_rules("dep","From Department","required");
+        $this->form_validation->set_rules("role","From Role","required");
+        $this->form_validation->set_rules("tdep","To Department","required");
+        $this->form_validation->set_rules("trole","To Role","required");
         if($this->form_validation->run())
 		{
             $this->load->model('User_Model');
-            $user=$this->input->post('user');
             $dep=$this->input->post('dep');
             $role=$this->input->post('role');
-            $val=$this->User_Model->addac($user,$dep,$role);
+            $tdep=$this->input->post('tdep');
+            $trole=$this->input->post('trole');
+            $val=$this->User_Model->addac($dep,$role,$tdep,$trole);
             if($val==-1)
             {
                 echo "<script>alert('This Access Has Already Been Assigned To The User.')</script>";
@@ -298,16 +332,18 @@ public function rAccess()
 {
     $this->load->helper(array('form', 'url'));
     $this->load->library('form_validation');
-    $this->form_validation->set_rules("user","User","required");
-    $this->form_validation->set_rules("dep","Department","required");
-    $this->form_validation->set_rules("role","Role","required");
+    $this->form_validation->set_rules("dep","From Department","required");
+    $this->form_validation->set_rules("role","From Role","required");
+    $this->form_validation->set_rules("tdep","To Department","required");
+    $this->form_validation->set_rules("trole","To Role","required");
     if($this->form_validation->run())
     {
         $this->load->model('User_Model');
-        $user=$this->input->post('user');
         $dep=$this->input->post('dep');
         $role=$this->input->post('role');
-        $val=$this->User_Model->remac($user,$dep,$role);
+        $tdep=$this->input->post('tdep');
+        $trole=$this->input->post('trole');
+        $val=$this->User_Model->remac($dep,$role,$tdep,$trole);
         if($val==1)
         {
             echo "<script>alert('Access Removed Successfully.')</script>";
@@ -334,7 +370,7 @@ public function suser()
 public function saccess()
 {
     $this->load->model('User_Model');
-        $data['user'] = $this->User_Model->get_user();
+    $data['user'] = $this->User_Model->get_dep();
         $this->load->view('showAccess',$data);
 }
 
@@ -410,6 +446,7 @@ public function sdep()
                 "department"=>$this->input->post("dep"),
                 "password"=>$this->input->post("password"),
                 "role"=>$this->input->post("role"),
+                "isAdmin"=>0,
                 "gauthkey"=>$secret,
                 "Status"=>1
 				

@@ -13,21 +13,23 @@ class User_Model extends CI_Model
         return $query->result();
     }
 
-    function addac($user,$dep,$role)
+    function addac($dep,$role,$tdep,$trole)
     {
         $q=$this->db->select("*")
-        ->where('user', $user)
-        ->where('department', $dep)
-        ->where('role', $role)
+        ->where('fdepartment', $dep)
+        ->where('frole', $role)
+        ->where('tdepartment', $tdep)
+        ->where('trole', $trole)
         ->get('access');
         if($q->num_rows()==1){
             return -1;
         }
         else{
             $data=array(
-                "user"=>$user,
-                "department"=>$dep,
-                "role"=>$role
+                "fdepartment"=>$dep,
+                "frole"=>$role,
+                "tdepartment"=>$tdep,
+                "trole"=>$trole
             );
             if($this->db->insert('access',$data))
             return 1;
@@ -51,11 +53,12 @@ function get_adep($user){
 
 }
 
-function remac($user,$dep,$role)
+function remac($dep,$role,$tdep,$trole)
 {
-    $this->db->where('user', $user);
-    $this->db->where('department', $dep);
-    $this->db->where('role', $role);
+    $this->db->where('fdepartment', $dep);
+    $this->db->where('frole', $role);
+    $this->db->where('tdepartment', $tdep);
+    $this->db->where('trole', $trole);
 if($this->db->delete('access'))
 return 1;
 else
@@ -63,15 +66,59 @@ return 0;
 //DELETE FROM employee_master WHERE emp_ID = $id
 }
 
-function get_arole($user,$dep){
-    $q=$this->db->select("role")
-        ->where('user', $user)
-        ->where('department', $dep)
+function get_arole($dep){
+    $q=$this->db->select("frole")
+        ->where('fdepartment', $dep)
         ->get('access');
-        $out='<option value=""></option>';
+        $out='<option value="" disabled>Select Role</option>';
         foreach($q->result() as $row)
         {
-            $out.='<option value="'.$row->role.'">'.$row->role.'</option>';
+            $out.='<option value="'.$row->frole.'">'.$row->frole.'</option>';
+        }
+        return $out;
+
+}
+
+
+function get_tdep($dep,$role){
+    $q=$this->db->select("tdepartment")
+        ->where('fdepartment', $dep)
+        ->where('frole', $role)
+        ->get('access');
+        $out='<option value="" disabled>Select To Department</option>';
+        foreach($q->result() as $row)
+        {
+            $out.='<option value="'.$row->tdepartment.'">'.$row->tdepartment.'</option>';
+        }
+        return $out;
+
+}
+
+
+function get_trole($dep,$role,$tdep){
+    $q=$this->db->select("trole")
+        ->where('fdepartment', $dep)
+        ->where('frole', $role)
+        ->where('tdepartment', $tdep)
+        ->get('access');
+        $out='<option value="" disabled>Select To Role</option>';
+        foreach($q->result() as $row)
+        {
+            $out.='<option value="'.$row->trole.'">'.$row->trole.'</option>';
+        }
+        return $out;
+
+}
+
+
+function get_addrole($dep){
+    $q=$this->db->select("*")
+        ->where('Department', $dep)
+        ->get('roles');
+        $out='<option value="" disabled>Select Role</option>';
+        foreach($q->result() as $row)
+        {
+            $out.='<option value="'.$row->Role.'">'.$row->Role.'</option>';
         }
         return $out;
 
@@ -137,34 +184,38 @@ $q=$this->db->select("*")
 
 
 
-function get_showaccess($user)
+function get_showaccess($dep,$role)
 {
 
-    if($user==="all")
+    if($roles==="all")
     {
         $q=$this->db->select("*")
+        ->where('fdepartment',$dep)
         ->get('access');
     }
     else{
 $q=$this->db->select("*")
-->where('user',$user)
+->where('fdepartment',$dep)
+->where('frole',$role)
 ->get('access');
     }
     $out='  <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">User</th>
-      <th scope="col">Department</th>
-      <th scope="col">Role</th>
+      <th scope="col">From Department</th>
+      <th scope="col">From Role</th>
+      <th scope="col">To Department</th>
+      <th scope="col">To Role</th>
     </tr>
   </thead> <tbody>';
     foreach($q->result() as $row)
     {
         $out.='<tr>
         <th>"'.$row->ID.'"</th>
-        <th>"'.$row->user.'"</th>
-        <th>"'.$row->department.'"</th>
-        <th>"'.$row->role.'"</th>
+        <th>"'.$row->fdepartment.'"</th>
+        <th>"'.$row->frole.'"</th>
+        <th>"'.$row->tdepartment.'"</th>
+        <th>"'.$row->trole.'"</th>
       </tr>';
     }
     $out.='</tbody>';
@@ -175,22 +226,25 @@ $q=$this->db->select("*")
 
 
 
-function get_showrole($user)
+function get_showrole($role,$dep)
 {
 
-    if($user==="all")
+    if($role==="all")
     {
         $q=$this->db->select("*")
+        ->where('department',$dep)
         ->get('roles');
     }
     else{
 $q=$this->db->select("*")
-->where('ID',$user)
+->where('role',$role)
+->where('department',$dep)
 ->get('roles');
     }
     $out='  <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Department</th>
       <th scope="col">Role</th>
     </tr>
   </thead> <tbody>';
@@ -198,6 +252,7 @@ $q=$this->db->select("*")
     {
         $out.='<tr>
         <th>"'.$row->ID.'"</th>
+        <th>"'.$row->Department.'"</th>
         <th>"'.$row->Role.'"</th>
       </tr>';
     }
@@ -276,12 +331,23 @@ public function AddDepart($data)
 }
 
 
-public function AddRol($data)
+public function AddRol($data,$dep,$role)
 {
+
+
+    $q=$this->db->select("*")
+        ->where('Role', $role)
+        ->where('Department', $dep)
+        ->get('roles');
+        if($q->num_rows()>0){
+            return -1;
+        }
+else{
     if($this->db->insert('roles',$data))
     return 1;
     else
     return 0;
+}
 }
 
     public function dct($uid)

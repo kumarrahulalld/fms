@@ -49,27 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <!-- Edit Form -->
                 <form method="post" action="http://localhost/fms/User/rAccess">
-                <div class="row">
-
-                  
-<!-- First column -->
-<div class="col-md-12">
-  <div class="md-form mb-0">
-      <h4 class="text-center">Select User</h4>
-    <select class="browser-default custom-select custom-select-md" name="user" id="user" value="<?php echo set_select('user'); ?>">
-        <option value="" disabled>Select User</option>
-        <?php 
-
-foreach($user as $row)
-{ 
-  echo '<option value="'.$row->ID.'">'.$row->NAME.'</option>';
-}
-?>
-    </select>
-    <span class="text-danger wrap-text"><?php echo form_error('user');?></span>
-  </div>
-</div>
-</div>
 <div class="row">
 
                   
@@ -78,7 +57,14 @@ foreach($user as $row)
   <div class="md-form mb-0">
       <h4 class="text-center">Select Department</h4>
     <select class="browser-default custom-select custom-select-md" name="dep" id="dep" value="<?php echo set_select('dep'); ?>">
-        <option value="" disabled>Select Department</option>
+    <option value="" disabled>Select Department</option>
+        <?php 
+
+            foreach($user as $row)
+            { 
+              echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
+            }
+            ?>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('dep');?></span>
   </div>
@@ -96,9 +82,40 @@ foreach($user as $row)
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
   </div>
+</div>
+</div>
+
+
+<div class="row">
+
+                  
+<!-- First column -->
+<div class="col-md-12">
+  <div class="md-form mb-0">
+      <h4 class="text-center">Select To Department</h4>
+    <select class="browser-default custom-select custom-select-md" name="tdep" id="tdep" value="<?php echo set_select('tdep'); ?>">
+        <option value="" disabled>Select Department</option>
+    </select>
+    <span class="text-danger wrap-text"><?php echo form_error('tdep');?></span>
+  </div>
+</div>
+</div>
+<div class="row">
+
+                  
+<!-- First column -->
+<div class="col-md-12">
+  <div class="md-form mb-0">
+      <h4 class="text-center">Select To Role</h4>
+    <select class="browser-default custom-select custom-select-md" name="trole" id="trole" value="<?php echo set_select('trole'); ?>">
+        <option value="" disabled>Select Role</option>
+    </select>
+    <span class="text-danger wrap-text"><?php echo form_error('trole');?></span>
+  </div>
   <button type="submit" class="btn btn-outline-primary m-4">Procced</button>
 </div>
 </div>
+
 </form>
 </div>
 </div>
@@ -115,15 +132,16 @@ foreach($user as $row)
 <script>
 
   $(document).ready(function(){
-    $('#user').change(function(){
-      var u=$('#user').val();
+    $('#role').change(function(){
+      var u=$('#role').val();
+      var d=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_dep",
+        url:"http://localhost/fms/User/get_tdep",
         method:"POST",
-        data:{user:u},
+        data:{role:u,dep:d},
         success:function(data)
         {
-          $('#dep').html(data);
+          $('#tdep').html(data);
         }
       });
     });
@@ -131,14 +149,29 @@ foreach($user as $row)
 
     $('#dep').change(function(){
       var u=$('#dep').val();
-      var us=$('#user').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_role",
+        url:"http://localhost/fms/User/get_trole",
         method:"POST",
-        data:{dep:u,user:us},
+        data:{dep:u},
         success:function(data)
         {
           $('#role').html(data);
+        }
+      });
+    });
+
+
+    $('#tdep').change(function(){
+      var u=$('#role').val();
+      var d=$('#dep').val();
+      var t=$('#tdep').val();
+      $.ajax({
+        url:"http://localhost/fms/User/get_torole",
+        method:"POST",
+        data:{role:u,dep:d,tdep:t},
+        success:function(data)
+        {
+          $('#trole').html(data);
         }
       });
     });

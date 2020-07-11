@@ -6,7 +6,7 @@ class Authenticator extends CI_Controller {
 
     public function index()
 	{
-        if($this->session->userdata('ROLE')==""){
+        if($this->session->userdata('isa')==""){
         redirect("Welcome/index");
         }
         else{
@@ -41,7 +41,12 @@ class Authenticator extends CI_Controller {
             $checkResult = $ga->verifyCode($secret, $key, 2000);
             if($checkResult)
             {
+                if($this->session->userdata('isa')->isAdmin==1)
                 $this->load->view('panel');
+                else
+                {
+                    $this->load->view('upanel');  
+                }
             }
             else{
                 echo "<script>alert('Invalid Code Provided.')</script>";

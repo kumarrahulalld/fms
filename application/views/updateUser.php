@@ -98,10 +98,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             foreach($dep as $row)
             { 
-              if($row->ID==$udata[0]->DEPARTMENT)
-              echo '<option selected value="'.$row->ID.'">'.$row->Department.'</option>';
+              if($row->Department==$udata[0]->DEPARTMENT)
+              echo '<option selected value="'.$row->Department.'">'.$row->Department.'</option>';
               else
-              echo '<option value="'.$row->ID.'">'.$row->Department.'</option>';
+              echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
 
             }
             ?>
@@ -117,17 +117,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <h6 class="text-center">Select Role</h6>
     <select class="browser-default custom-select custom-select-md" name="role" id="role">
         <option value="<?php echo set_select('role'); ?>"disabled>Select Role</option>
-        <?php 
-
-foreach($role as $row)
-{ 
-  if($row->ID==$udata[0]->ROLE)
-  echo '<option selected value="'.$row->ID.'">'.$row->Role.'</option>';
-  else
-  echo '<option value="'.$row->ID.'">'.$row->Role.'</option>';
-
-}
-?>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
 
@@ -162,5 +151,23 @@ foreach($role as $row)
     <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
+    <script>
+
+$(document).ready(function(){
+  $('#dep').change(function(){
+    var u=$('#dep').val();
+    $.ajax({
+      url:"http://localhost/fms/User/get_addrole",
+      method:"POST",
+      data:{dep:u},
+      success:function(data)
+      {
+        $('#role').html(data);
+      }
+    });
+  });
+  
+});
+</script>
 </body>
 </html>

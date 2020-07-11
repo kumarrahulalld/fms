@@ -54,6 +54,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   
 <!-- First column -->
 <div class="col-md-12">
+<div class="md-form">
+    <select class="browser-default custom-select custom-select-md" id="dep" name="dep" value="<?php echo set_select('dep'); ?>">
+        <option value="" disabled>Select Department</option>
+        <?php 
+
+            foreach($user as $row)
+            { 
+              echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
+            }
+            ?>
+    </select>
+    <span class="text-danger wrap-text"><?php echo form_error('dep');?></span>
+
+            </div>
   <div class="md-form mb-0">
   <div class="md-form">
                 <input type="text" id="role" name="role" value="<?php echo set_value('role'); ?>" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">

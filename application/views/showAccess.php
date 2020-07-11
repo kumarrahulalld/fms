@@ -51,24 +51,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <form method="post" action="">
                 <div class="row">
 
-                  
-<!-- First column -->
-<div class="col-md-12">
-  <div class="md-form mb-0">
-      <h4 class="text-center">Select User</h4>
-    <select class="browser-default custom-select custom-select-md" name="user" id="user" value="<?php echo set_select('user'); ?>">
-        <option value="" disabled>Select User</option>
-        <option value="all">Select All</option>
-        <?php 
+<div class="md-form">
+<select class="browser-default custom-select custom-select-md" id="dep" name="dep" value="<?php echo set_select('dep'); ?>">
+<option value="" disabled>Select Department</option>
+<?php 
 
 foreach($user as $row)
 { 
-  echo '<option value="'.$row->NAME.'">'.$row->NAME.'</option>';
+echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
 }
 ?>
-    </select>
-    <span class="text-danger wrap-text"><?php echo form_error('user');?></span>
-  </div>
+</select>
+<span class="text-danger wrap-text"><?php echo form_error('dep');?></span>
+
+</div>  
+<!-- First column -->
+<div class="col-md-12">
+<div class="md-form mb-0">
+<h4 class="text-center">Select Role</h4>
+<select class="browser-default custom-select custom-select-md" name="role" id="role" value="<?php echo set_select('role'); ?>">
+<option value="" disabled>Select Role</option>
+<option value="all">Select All</option>
+
+</select>
+<span class="text-danger wrap-text"><?php echo form_error('role');?></span>
+</div>
 </div>
 </div>
 </form>
@@ -86,19 +93,35 @@ foreach($user as $row)
     <script>
 
   $(document).ready(function(){
-    $('#user').change(function(){
-      var u=$('#user').val();
+    $('#role').change(function(){
+      var u=$('#role').val();
+      var d=$('#dep').val();
       $.ajax({
         url:"http://localhost/fms/User/get_saccess",
         method:"POST",
-        data:{user:u},
+        data:{role:u,dep:d},
         success:function(data)
         {
           $('#tab').html(data);
         }
       });
     });
+
+    $('#dep').change(function(){
+      var u=$('#dep').val();
+      $.ajax({
+        url:"http://localhost/fms/User/get_addrole",
+        method:"POST",
+        data:{dep:u},
+        success:function(data)
+        {
+          $('#role').html(data);
+        }
+      });
+    });
+
 });
+
     </script>
 </body>
 </html>
