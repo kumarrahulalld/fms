@@ -49,13 +49,11 @@ class Welcome extends CI_Controller {
 			if($id!=null){
 				$this->load->library('session');
 				$this->session->set_userdata('ROLE', $id->ROLE);
+				$this->session->set_userdata('DEPARTMENT', $id->DEPARTMENT);
 				$this->session->set_userdata('USER', $id->EMAIL);
 				$this->session->set_userdata('SECU', $id->gauthkey);
 				$this->session->set_userdata('isa',$id);
 				redirect('Authenticator/index');
-
-			
-
 			}
 			else{
 				redirect("Welcome/invalid");

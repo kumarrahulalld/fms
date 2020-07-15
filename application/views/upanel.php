@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <p class="card-text">You Can Send, Receive , Revert , View Files And Can Change Your Password. </p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
        
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/index">Add File</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/File/newfile">Add File</a></button>
         <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/select">Received Files</a></button>
         <br/>
         <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/active">Sent Files</a></button>
