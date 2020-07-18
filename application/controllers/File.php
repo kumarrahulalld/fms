@@ -30,10 +30,10 @@ class File extends CI_Controller {
 		if($this->form_validation->run())
 		{
 				if($this->File_Model->changePass()){
-				echo "<script>alert('Password Chnaged Successflly.')</script>";
+					$this->session->set_flashdata('Password Changed Successfully.');
 				}
 				else{
-				echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+					$this->session->set_flashdata('Something Went Wrong Try Again.');
 				}
 			}
 		else
@@ -67,7 +67,7 @@ class File extends CI_Controller {
 		{
 			$this->session->set_userdata('file',$new_name);
 			$r=$this->File_Model->get_access();
-			$r1= '<embed src="http://localhost/fms/files/'.$new_name.'.pdf" width="500" height="375" 
+			$r1= '<embed src="https://filetracking.velomia.tech//files/'.$new_name.'.pdf" width="500" height="375" 
 			type="application/pdf">';
 			$r1.=$r;
 			echo $r1;
@@ -84,10 +84,10 @@ class File extends CI_Controller {
 		if($this->form_validation->run())
 		{
 				if($this->File_Model->forward_file()){
-				echo "<script>alert('File Added Successflly.')</script>";
+					$this->session->set_flashdata('File Added Successfully.');
 				}
 				else{
-				echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+					$this->session->set_flashdata('Something Went Wrong Try Again.');
 				}
 			}
 		else
@@ -141,10 +141,10 @@ public function forwardComp()
 	if($this->form_validation->run())
 	{
 			if($this->File_Model->forwardComp_file()){
-			echo "<script>alert('File Forwarded Successflly.')</script>";
+				$this->session->set_flashdata('File Forwarded Successfully.');
 			}
 			else{
-			echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+				$this->session->set_flashdata('Something Went Wrong Try Again.');
 			}
 		}
 	else

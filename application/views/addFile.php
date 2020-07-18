@@ -9,7 +9,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -30,7 +30,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" id="form" action="http://localhost/fms/File/addFile" enctype="multipart/form-data">
+                <form method="post" id="form" action="https://filetracking.velomia.tech//File/addFile" enctype="multipart/form-data">
                 <div class="row">
 
                 <?php echo @$error; ?> 
@@ -82,7 +82,7 @@ include('Header.php');
         var form_data = new FormData();                  
         form_data.append('ufile', file_data);
                  $.ajax({
-                     url:'http://localhost/fms/File/upload',
+                     url:'https://filetracking.velomia.tech//File/upload',
                      type:"post",
                      data: form_data,
                      processData:false,

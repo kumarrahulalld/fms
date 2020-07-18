@@ -133,12 +133,14 @@ public function sendmail()
 
     if ($this->email->send()) 
     {
-        echo "<script>alert('Email Sended Successfully.')</script>";
+        $this->session->set_flashdata('response',"Email Sent Successfully.");
+        redirect('https://filetracking.velomia.tech//User/forgot');
             
     } 
     else 
     {
-        show_error($this->email->print_debugger());
+        $this->session->set_flashdata('response',"Some Error Occured.");
+redirect('https://filetracking.velomia.tech//User/forgot');
     }
 }
 public function active()
@@ -168,11 +170,11 @@ public function activate()
  if($this->User_Model->act($uid))
  
     {
-        echo "<script>alert('User Activated Successfully.')</script>";
+        $this->session->set_flashdata('response',"User Added Successfully.");
         $this->load->view('actUser');
     }
     else{
-        echo "<script>alert('Try Again .')</script>";
+        $this->session->set_flashdata('response',"Some Error Occured.");
         $this->load->view('actUser');
     }
     }
@@ -205,11 +207,11 @@ public function adddepart()
         $data=array("Department"=>$this->input->post('dep'));
         if($this->User_Model->AddDepart($data))
         {
-            echo "<script>alert('Department Added Successfully.')</script>";
+            $this->session->set_flashdata('response',"Department Added Successfully.");
             $this->load->view('addDep');
         }
         else{
-            echo "<script>alert('Try Again .')</script>";
+            $this->session->set_flashdata('response',"Some Error Occured.");
             $this->load->view('addDep');
         }
     }
@@ -234,16 +236,16 @@ public function addrole()
         $r=$this->User_Model->AddRol($data,$this->input->post('dep'),$this->input->post('role'));
         if($r==1)
         {
-            echo "<script>alert('Role Added Successfully.')</script>";
+            $this->session->set_flashdata('response',"Role Added Successfully.");
             $this->load->view('addRole');
         }
         else if($r==-1){
-            echo "<script>alert('Role Already Exists.')</script>";
+            $this->session->set_flashdata('response',"Role Already Exists.");
             $this->load->view('addRole');
         }
         else
         {
-            echo "<script>alert('Something Went Wrong Try Again!.')</script>";
+            $this->session->set_flashdata('response',"Some Error Occured.");
             $this->load->view('addRole');
         }
     }
@@ -268,11 +270,11 @@ public function deactivate()
         
         if($this->User_Model->dct($uid))
         {
-            echo "<script>alert('User Deactivated Successfully.')</script>";
+            $this->session->set_flashdata('response',"User Deactivated Successfully.");
             $this->load->view('decUser');
         }
         else{
-            echo "<script>alert('Try Again .')</script>";
+            $this->session->set_flashdata('response',"Some Error Occured.");
             $this->load->view('decUser');
         }
     }
@@ -322,17 +324,18 @@ public function aAccess()
             $val=$this->User_Model->addac($dep,$role,$tdep,$trole);
             if($val==-1)
             {
-                echo "<script>alert('This Access Has Already Been Assigned To The User.')</script>";
+                $this->session->set_flashdata('This Access Has Already Been Assigned To The User.');
                 $this->addacc();
             }
             elseif($val==1)
             {
-                echo "<script>alert('Access Successfully Assigned To The User.')</script>";
+                $this->session->set_flashdata('Access Successfully Assigned To The User.');
                 $this->addacc();
             }
             else
             {
-                echo "<script>alert('Something Went Wrong Try Again.')</script>";
+                $this->session->set_flashdata('Something Went Wrong Try Again.');
+
                 $this->addacc();
             }
         }
@@ -360,12 +363,12 @@ public function rAccess()
         $val=$this->User_Model->remac($dep,$role,$tdep,$trole);
         if($val==1)
         {
-            echo "<script>alert('Access Removed Successfully.')</script>";
+            $this->session->set_flashdata('Access Removed Successfully.');
             $this->remacc();
         }
         else
         {
-            echo "<script>alert('Something Went Wrong Try Again.')</script>";
+            $this->session->set_flashdata('Some Error Occured.');
             $this->remacc();
         }
     }
@@ -423,10 +426,10 @@ public function sdep()
             
             if($this->User_Model->updateUser($data))
             {
-                echo "<script>alert('User Updated Successfully.')</script>";
+                $this->session->set_flashdata('User Updated Successfully.');
             }
             else{
-                echo "<script>alert('Try Again Something Went Wrong.')</script>";
+                $this->session->set_flashdata('Something Went Wrong Try Again.');
             }
 
 
@@ -473,7 +476,7 @@ public function sdep()
             $this->load->view('acc_success'); 
             }
             else{
-                echo "<script>alert('Can't Process Your Request Try Again.')</script>";
+                $this->session->set_flashdata('Something Went Wrong Try Again.');
                 $this->index();
             }
     }

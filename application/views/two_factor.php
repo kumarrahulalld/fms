@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech/">Home</a></li>
                 </ul>
             </div>
         </div>

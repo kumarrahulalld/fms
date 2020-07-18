@@ -151,7 +151,7 @@ $now = date('Y-m-d H:i:s');
         {
                 $res.='<tr> <td>"'.$row->file_id.'"</td> <td>"'.$row->file_title.'"</td> <td>"'.$row->file_desc.'"</td> <td>"'.$row->file_to.'"</td> </tr>';
         }
-        $res.='</tbody></table><embed src="http://localhost/fms/files/'.$row->file_id.'.pdf" width="500" height="375" 
+        $res.='</tbody></table><embed src="https://filetracking.velomia.tech//files/'.$row->file_id.'.pdf" width="500" height="375" 
         type="application/pdf">';
         return $res;
     }

@@ -9,7 +9,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -30,7 +30,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="http://localhost/fms/User/addrole">
+                <form method="post" action="https://filetracking.velomia.tech//User/addrole">
                 <div class="row">
 
                   

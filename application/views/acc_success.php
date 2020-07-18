@@ -21,7 +21,7 @@ include('Header.php');
     <br/>
     <h4 class="card-title text-info"><a>To Download QR Code Click On Download Button And Than Right Click & Select Save Image As Option.</a></h4>
 
-    <a href="http://localhost/fms/Authenticator/panel" class="btn btn-outline-success" download>Go To Dashboard</a>
+    <a href="https://filetracking.velomia.tech//Authenticator/panel" class="btn btn-outline-success" download>Go To Dashboard</a>
 
   </div>
 

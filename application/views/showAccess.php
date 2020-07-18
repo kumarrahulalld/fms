@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -73,7 +73,7 @@ echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
       var u=$('#role').val();
       var d=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_saccess",
+        url:"https://filetracking.velomia.tech//User/get_saccess",
         method:"POST",
         data:{role:u,dep:d},
         success:function(data)
@@ -86,7 +86,7 @@ echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
     $('#dep').change(function(){
       var u=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_addrole",
+        url:"https://filetracking.velomia.tech//User/get_addrole",
         method:"POST",
         data:{dep:u},
         success:function(data)

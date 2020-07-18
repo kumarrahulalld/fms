@@ -8,8 +8,8 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/User/logout">Log Out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//User/logout">Log Out</a></li>
 
                 </ul>
             </div>
@@ -39,12 +39,12 @@ include('Header.php');
         <p class="card-text">You Can Add , Update & Delete Users Using This Section. </p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
        
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/index">Add User</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="https://filetracking.velomia.tech//User/index">Add User</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/select">Update User</a></button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="https://filetracking.velomia.tech//User/select">Update User</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/active">Activate User</a></button>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/User/deactive">Deactivate User</a></button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="https://filetracking.velomia.tech//User/active">Activate User</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="https://filetracking.velomia.tech//User/deactive">Deactivate User</a></button>
 
 
       </div>
@@ -73,8 +73,8 @@ include('Header.php');
         <!--Text-->
         <p class="card-text">Here You Can Track & View Details of Files.</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/File/tfile">Track File</a></button>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/File/vfile">View File Details</a></button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="https://filetracking.velomia.tech//File/tfile">Track File</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="https://filetracking.velomia.tech//File/vfile">View File Details</a></button>
 
       </div>
 
@@ -102,7 +102,7 @@ include('Header.php');
         <!--Text-->
         <p class="card-text">Here You Can Add , Update & Delete Departments</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/AddDep">Add Department</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="https://filetracking.velomia.tech//User/AddDep">Add Department</a></button>
         <br/>
         <button type="button" class="btn btn-outline-danger waves-effect">Update Department</button>
         <br/>
@@ -134,11 +134,11 @@ include('Header.php');
         <!--Text-->
         <p class="card-text">Here You Can Add , Update , Delete Roles & Can Define Aceessibility For Roles.</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/Addrol">Add Role</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="https://filetracking.velomia.tech//User/Addrol">Add Role</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/addacc">Add Access</a></button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="https://filetracking.velomia.tech//User/addacc">Add Access</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/remacc">Remove Access</a></button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="https://filetracking.velomia.tech//User/remacc">Remove Access</a></button>
 
       </div>
 
@@ -167,13 +167,13 @@ include('Header.php');
         <!--Text-->
         <p class="card-text">Here You Can View Reports & Retrive Forgot Password.</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/User/forgot">Forgot Password</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="https://filetracking.velomia.tech//User/forgot">Forgot Password</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/User/suser">User Details</a></button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="https://filetracking.velomia.tech//User/suser">User Details</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/User/sdep">Department Details</a></button>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/User/srole">Role Details</a></button>
-        <button type="button" class="btn btn-outline-orange waves-effect"><a href="http://localhost/fms/User/saccess">User Access Details</a></button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="https://filetracking.velomia.tech//User/sdep">Department Details</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="https://filetracking.velomia.tech//User/srole">Role Details</a></button>
+        <button type="button" class="btn btn-outline-orange waves-effect"><a href="https://filetracking.velomia.tech//User/saccess">User Access Details</a></button>
       </div>
 
     </div>

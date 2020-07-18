@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -28,7 +28,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="http://localhost/fms/User/rAccess">
+                <form method="post" action="https://filetracking.velomia.tech//User/rAccess">
 <div class="row">
 
                   
@@ -108,7 +108,7 @@ include('Header.php');
       var u=$('#role').val();
       var d=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_tdep",
+        url:"https://filetracking.velomia.tech//User/get_tdep",
         method:"POST",
         data:{role:u,dep:d},
         success:function(data)
@@ -122,7 +122,7 @@ include('Header.php');
     $('#dep').change(function(){
       var u=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_trole",
+        url:"https://filetracking.velomia.tech//User/get_trole",
         method:"POST",
         data:{dep:u},
         success:function(data)
@@ -138,7 +138,7 @@ include('Header.php');
       var d=$('#dep').val();
       var t=$('#tdep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_torole",
+        url:"https://filetracking.velomia.tech//User/get_torole",
         method:"POST",
         data:{role:u,dep:d,tdep:t},
         success:function(data)

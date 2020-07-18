@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -65,7 +65,7 @@ foreach($user as $row)
     $('#dep').change(function(){
       var u=$('#dep').val();
       $.ajax({
-        url:"http://localhost/fms/User/get_sdep",
+        url:"https://filetracking.velomia.tech//User/get_sdep",
         method:"POST",
         data:{dep:u},
         success:function(data)

@@ -7,8 +7,8 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/File">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/User/logout">Log Out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//File">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//User/logout">Log Out</a></li>
 
                
                 </ul>
@@ -39,11 +39,11 @@ include('Header.php');
         <p class="card-text">You Can Send, Receive , Revert , View Files And Can Change Your Password. </p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 
-        <button type="button" class="btn btn-outline-success waves-effect"><a href="http://localhost/fms/File/newfile">Add File</a></button>
-        <button type="button" class="btn btn-outline-danger waves-effect"><a href="http://localhost/fms/File/addedFile">Added Files</a></button>
+        <button type="button" class="btn btn-outline-success waves-effect"><a href="https://filetracking.velomia.tech//File/newfile">Add File</a></button>
+        <button type="button" class="btn btn-outline-danger waves-effect"><a href="https://filetracking.velomia.tech//File/addedFile">Added Files</a></button>
         <br/>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/File/receivedFiles">Received Files</a></button>
-        <button type="button" class="btn btn-outline-secondry waves-effect"><a href="http://localhost/fms/File/cpass">Change Password</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="https://filetracking.velomia.tech//File/receivedFiles">Received Files</a></button>
+        <button type="button" class="btn btn-outline-secondry waves-effect"><a href="https://filetracking.velomia.tech//File/cpass">Change Password</a></button>
 
       </div>
 

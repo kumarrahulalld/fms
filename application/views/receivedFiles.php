@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -28,7 +28,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="http://localhost/fms/File/forwardComp">
+                <form method="post" action="https://filetracking.velomia.tech//File/forwardComp">
                 <div class="row">
 
                   
@@ -84,7 +84,7 @@ $(document).ready(function(){
     e.preventDefault();
     var u=$('#sfiles').val();
     $.ajax({
-      url:"http://localhost/fms/File/get_Forward",
+      url:"https://filetracking.velomia.tech//File/get_Forward",
       method:"POST",
       data:{sfiles:u},
       success:function(data)
@@ -99,7 +99,7 @@ $(document).ready(function(){
     var u=$('#desc').val();
     var v=$('#sfiles').val();
     $.ajax({
-      url:"http://localhost/fms/File/get_Revert",
+      url:"https://filetracking.velomia.tech//File/get_Revert",
       method:"POST",
       dataType : "json",
       data:{desc:u,sfiles:v},

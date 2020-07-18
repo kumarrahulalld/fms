@@ -8,7 +8,7 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -68,7 +68,7 @@ $(document).ready(function(){
     e.preventDefault();
     var u=$('#sfiles').val();
     $.ajax({
-      url:"http://localhost/fms/File/get_trackFile",
+      url:"https://filetracking.velomia.tech//File/get_trackFile",
       method:"POST",
       data:{sfiles:u},
       success:function(data)
