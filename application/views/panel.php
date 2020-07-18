@@ -1,34 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+include('Header.php');
 ?>
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - VELOMIA_Filemgmt1.0</title>
-    <link rel="icon" type="image/png" sizes="145x145" href="<?php echo base_url(); ?>public/assets/img/au.png">
-    <link rel="icon" type="image/png" sizes="145x145" href="<?php echo base_url(); ?>public/assets/img/au.png">
-    <link rel="icon" type="image/png" sizes="145x145" href="<?php echo base_url(); ?>public/assets/img/au.png">
-    <link rel="icon" type="image/png" sizes="145x145" href="<?php echo base_url(); ?>public/assets/img/au.png">
-    <link rel="icon" type="image/png" sizes="145x145" href="<?php echo base_url(); ?>public/assets/img/au.png">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/mdb.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-
-<!--Navbar -->
 <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container"><a class="navbar-brand" href="#">File Management System UoA</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="http://localhost/fms/User/logout">Log Out</a></li>
+
                 </ul>
             </div>
         </div>
@@ -91,8 +73,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!--Text-->
         <p class="card-text">Here You Can Track & View Details of Files.</p>
         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-        <button type="button" class="btn btn-outline-info waves-effect">Track File</button>
-        <button type="button" class="btn btn-outline-primary waves-effect">View File Deatils</button>
+        <button type="button" class="btn btn-outline-info waves-effect"><a href="http://localhost/fms/File/tfile">Track File</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a href="http://localhost/fms/File/vfile">View File Details</a></button>
 
       </div>
 
@@ -196,14 +178,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </div>
 </div>
-<script src="<?php echo base_url(); ?>public/assets/js/theme.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
+<?php  include('Footer.php');?>
 </body>
 </html>

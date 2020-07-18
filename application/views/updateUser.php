@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+include('Header.php');
 ?>
 
 <!DOCTYPE html>
@@ -146,11 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- Card -->
 
           </div>
-          <script src="<?php echo base_url(); ?>public/assets/js/theme.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
+<?php include('Footer.php');?>
     <script>
 
 $(document).ready(function(){

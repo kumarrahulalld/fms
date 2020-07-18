@@ -6,9 +6,8 @@ class File extends CI_Controller {
 	function __construct()
 	{
 	parent::__construct();
-	//load Helper for Form
-	$this->load->helper('url', 'form');	
-	$this->load->library('form_validation');
+	if($this->session->userdata('USER')==null)
+	redirect('/');
 	}
     public function index()
 	{
@@ -25,10 +24,27 @@ class File extends CI_Controller {
 		//$this->login();
 	}
 
+	public function chngpass()
+	{
+		$this->form_validation->set_rules("pass","Password","required|min_length[8]|max_length[8]");
+		if($this->form_validation->run())
+		{
+				if($this->File_Model->changePass()){
+				echo "<script>alert('Password Chnaged Successflly.')</script>";
+				}
+				else{
+				echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+				}
+			}
+		else
+		{
+			$this->load->view('changePass');
+		}
+	}
+
 
 	public function upload() 
 	{
-		$this->load->helper("file");
 		//if($this->session->userdata('file')!=null)
 		//unlink($this->session->userdata('file'));
         $config['upload_path'] = 'files/';
@@ -49,8 +65,7 @@ class File extends CI_Controller {
         } 
 		else 
 		{
-			$this->session->set_userdata('file','"files/'.$new_name.'.pdf"');
-			$this->load->model('File_Model');
+			$this->session->set_userdata('file',$new_name);
 			$r=$this->File_Model->get_access();
 			$r1= '<embed src="http://localhost/fms/files/'.$new_name.'.pdf" width="500" height="375" 
 			type="application/pdf">';
@@ -62,9 +77,115 @@ class File extends CI_Controller {
 	public function addFile()
 	{
 		
+		$this->form_validation->set_rules("title","File Title","required");
+		$this->form_validation->set_rules("desc","File Description","required");
+		$this->form_validation->set_rules('fward','Forward To','required');
+		//$this->form_validation->set_rules("ufile","PDF File","required");
+		if($this->form_validation->run())
+		{
+				if($this->File_Model->forward_file()){
+				echo "<script>alert('File Added Successflly.')</script>";
+				}
+				else{
+				echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+				}
+			}
+		else
+		{
+			$this->load->view('addFile');
+		}
 	}
 
 
+	public function cpass()
+	{
+		$this->load->view('changePass');
+	}
 
+
+	public function tfile()
+	{
+		$data['sfile']=$this->File_Model->get_tfile();
+		$this->load->view('showTrack',$data);
+	}
+
+	public function vfile()
+	{
+		$data['sfile']=$this->File_Model->get_tfile();
+		$this->load->view('showView',$data);
+	}
+
+	public function addedFile()
+	{
+			$data['sfile']=$this->File_Model->get_added();
+			$this->load->view('addedFiles',$data);
+	}
+
+
+public function get_addedFiles()
+{
+	echo $this->File_Model->get_addedFile();
+}
+
+public function get_Forward()
+{
+	$out= $this->File_Model->get_access();
+	$out.='<button type="submit" class="btn btn-outline-lime">Forward File</button>';
+	echo $out;
+}
+
+public function forwardComp()
+{
+	$this->form_validation->set_rules("desc","File Description","required");
+	$this->form_validation->set_rules("fward","File Forwarding To","required");
+	if($this->form_validation->run())
+	{
+			if($this->File_Model->forwardComp_file()){
+			echo "<script>alert('File Forwarded Successflly.')</script>";
+			}
+			else{
+			echo "<script>alert('Some Error Occured Please Try Again.')</script>";
+			}
+		}
+	else
+	{
+		$this->load->view('receivedFiles');
+	}
+}
+
+
+public function get_Revert()
+{
+	$desc=$this->input->post('desc');
+	if($desc!=null)
+	{
+			if($this->File_Model->revert_file()==1){
+			echo '<p class="text-success">File Reverted Successfully.</p>';
+			$this->load->view('receivedFiles');
+			}
+			else{
+			echo '<p class="text-danger">Some Error Occured..</p>';
+			$this->load->view('receivedFiles');
+			}
+		}
+	else
+	{
+		$this->load->view('receivedFiles');
+	}
+	
+}
+
+public function get_trackFile()
+{
+	echo $this->File_Model->get_track();
+}
+
+
+
+public function receivedFiles()
+{
+			$data['sfile']=$this->File_Model->get_received();
+			$this->load->view('receivedFiles',$data);
+}
 
 }

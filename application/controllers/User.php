@@ -2,26 +2,40 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once('GoogleAuthenticator.php');
 class User extends CI_Controller {
+    function __construct()
+	{
+	parent::__construct();
+	if($this->session->userdata('USER')==null)
+	redirect('/');
+	}
     public function index()
 	{
         
-        $this->load->model('User_Model');
+        
         $data['dep'] = $this->User_Model->get_dep();
         $this->load->view('addUser',$data);
       
 		//$this->login();
     }
 
+
+    public function logout()
+    {
+        $this->session->unset_userdata('USER');
+        $this->session->sess_destroy();
+        redirect('/');
+    }
+
 public function select()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_user();
         $this->load->view('selectUser',$data);
 }
 
 public function addacc()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_user();
         $data['dep'] = $this->User_Model->get_dep();
         $data['role'] = $this->User_Model->get_role();
@@ -30,73 +44,73 @@ public function addacc()
 
 public function get_suser()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_showuser($this->input->post('user'));
 }
 
 public function get_saccess()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_showaccess($this->input->post('dep'),$this->input->post('role'));
 }
 
 public function get_sdep()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_showdep($this->input->post('dep'));
 }
 
 
 public function get_srole()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_showrole($this->input->post('role'),$this->input->post('dep'));
 }
 
 public function remacc()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_dep();
         $this->load->view('removeaccess',$data);
 }
 public function get_dep()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_adep($this->input->post('user'));
 }
 
 public function get_role()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_arole($this->input->post('dep'));
 }
 public function get_tdep()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_tdep($this->input->post('dep'),$this->input->post('role'));
 }
 
 public function get_trole()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_arole($this->input->post('dep'));
 }
 
 
 public function get_torole()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_trole($this->input->post('dep'),$this->input->post('role'),$this->input->post('tdep'));
 }
 
 public function get_addrole()
 {
-    $this->load->model('User_Model');
+    
     echo $this->User_Model->get_addrole($this->input->post('dep'));
 }
 public function forgot()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_user();
         $this->session->set_userdata('usr',$data['user'][0]->PASSWORD);
         $this->load->view('forgotpass',$data);
@@ -129,28 +143,28 @@ public function sendmail()
 }
 public function active()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_decuser();
         $this->load->view('actUser',$data);
 }
 public function deactive()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_actuser();
         $this->load->view('decUser',$data);
 }
 public function activate()
 {
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
+    
+    
     $this->form_validation->set_rules("user","User","required");
     if($this->form_validation->run())
     {
-        $this->load->library('session');
+        
         
         $uid= $this->input->post('user');
         $this->session->set_userdata('uid',$uid);
-        $this->load->model('User_Model');
+        
  if($this->User_Model->act($uid))
  
     {
@@ -175,19 +189,19 @@ public function AddDep()
 
 public function Addrol()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_dep();
     $this->load->view('addRole',$data);
 }
 
 public function adddepart()
 {
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
+    
+    
     $this->form_validation->set_rules("dep","Department Name","required|alpha|is_unique[department.Department]");
     if($this->form_validation->run())
     {
-        $this->load->model('User_Model');
+        
         $data=array("Department"=>$this->input->post('dep'));
         if($this->User_Model->AddDepart($data))
         {
@@ -209,13 +223,13 @@ public function adddepart()
 
 public function addrole()
 {
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
+    
+    
     $this->form_validation->set_rules("dep","Department Name","required");
     $this->form_validation->set_rules("role","Role Name","required|alpha");
     if($this->form_validation->run())
     {
-        $this->load->model('User_Model');
+        
         $data=array("Role"=>$this->input->post('role'),"Department"=>$this->input->post('dep'));
         $r=$this->User_Model->AddRol($data,$this->input->post('dep'),$this->input->post('role'));
         if($r==1)
@@ -242,16 +256,16 @@ public function addrole()
 
 public function deactivate()
 {
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
+    
+    
     $this->form_validation->set_rules("user","User","required");
     if($this->form_validation->run())
     {
-        $this->load->library('session');
+        
         
         $uid= $this->input->post('user');
         $this->session->set_userdata('uid',$uid);
-        $this->load->model('User_Model');
+        
         if($this->User_Model->dct($uid))
         {
             echo "<script>alert('User Deactivated Successfully.')</script>";
@@ -269,16 +283,16 @@ public function deactivate()
 
 public function proceed()
 {
-    $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+    
+        
         $this->form_validation->set_rules("user","User","required");
         if($this->form_validation->run())
 		{
-            $this->load->library('session');
+            
             
             $uid= $this->input->post('user');
             $this->session->set_userdata('uid',$uid);
-            $this->load->model('User_Model');
+            
             $data['udata']=$this->User_Model->getUdetail($uid);
             $data['dep'] = $this->User_Model->get_dep();
         $data['role'] = $this->User_Model->get_role();
@@ -292,15 +306,15 @@ public function proceed()
 
 public function aAccess()
 {
-    $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+    
+        
         $this->form_validation->set_rules("dep","From Department","required");
         $this->form_validation->set_rules("role","From Role","required");
         $this->form_validation->set_rules("tdep","To Department","required");
         $this->form_validation->set_rules("trole","To Role","required");
         if($this->form_validation->run())
 		{
-            $this->load->model('User_Model');
+            
             $dep=$this->input->post('dep');
             $role=$this->input->post('role');
             $tdep=$this->input->post('tdep');
@@ -330,15 +344,15 @@ public function aAccess()
 
 public function rAccess()
 {
-    $this->load->helper(array('form', 'url'));
-    $this->load->library('form_validation');
+    
+    
     $this->form_validation->set_rules("dep","From Department","required");
     $this->form_validation->set_rules("role","From Role","required");
     $this->form_validation->set_rules("tdep","To Department","required");
     $this->form_validation->set_rules("trole","To Role","required");
     if($this->form_validation->run())
     {
-        $this->load->model('User_Model');
+        
         $dep=$this->input->post('dep');
         $role=$this->input->post('role');
         $tdep=$this->input->post('tdep');
@@ -362,36 +376,36 @@ public function rAccess()
 
 public function suser()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_user();
         $this->load->view('showUser',$data);
 }
 
 public function saccess()
 {
-    $this->load->model('User_Model');
+    
     $data['user'] = $this->User_Model->get_dep();
         $this->load->view('showAccess',$data);
 }
 
 public function srole()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_role();
         $this->load->view('showRole',$data);
 }
 
 public function sdep()
 {
-    $this->load->model('User_Model');
+    
         $data['user'] = $this->User_Model->get_dep();
         $this->load->view('showDep',$data);
 }
 
     public function update()
     {
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+        
+        
         $this->form_validation->set_rules("name","Name","required|alpha");
 		$this->form_validation->set_rules("phone","Phone","required|min_length[10]|max_length[10]|numeric");
         $this->form_validation->set_rules("dep","Department","required");
@@ -406,7 +420,7 @@ public function sdep()
                 "role"=>$this->input->post("role"),
 				
             );
-            $this->load->model('User_Model');
+            
             if($this->User_Model->updateUser($data))
             {
                 echo "<script>alert('User Updated Successfully.')</script>";
@@ -424,8 +438,8 @@ public function sdep()
     }
     public function add()
 	{
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+        
+        
         $this->form_validation->set_rules("fname","First Name","required|alpha");
         $this->form_validation->set_rules("lname","Last Name","required|alpha");
 		$this->form_validation->set_rules("phone","Phone","required|min_length[10]|max_length[10]|numeric|is_unique[users.phone]");
@@ -451,7 +465,7 @@ public function sdep()
                 "Status"=>1
 				
             );
-            $this->load->model('User_Model');
+            
             if($this->User_Model->add($data))
             {
             $qrCodeUrl 	= $ga->getQRCodeGoogleUrl($this->input->post("email"), $secret,'fms.allduniv.ac.in');

@@ -75,10 +75,6 @@ foreach($user as $row)
 </div>
 </div>
 </div>
-<script src="<?php echo base_url(); ?>public/assets/js/theme.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/js/mdb.min.js"></script>
+<?php include('Footer.php');?>
 </body>
 </html>
