@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2020 at 06:49 AM
+-- Generation Time: Jul 18, 2020 at 04:37 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -30,9 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `access` (
   `ID` int(11) NOT NULL,
-  `user` varchar(30) NOT NULL,
-  `department` varchar(30) NOT NULL,
-  `role` varchar(15) NOT NULL
+  `fdepartment` varchar(30) NOT NULL,
+  `frole` varchar(15) NOT NULL,
+  `tdepartment` varchar(30) NOT NULL,
+  `trole` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,15 +47,22 @@ CREATE TABLE `department` (
   `Department` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `department`
+-- Table structure for table `files`
 --
 
-INSERT INTO `department` (`ID`, `Department`) VALUES
-(1, 'COE'),
-(2, 'Finance'),
-(3, 'DSW'),
-(4, 'Hello');
+CREATE TABLE `files` (
+  `ID` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `file_title` varchar(50) NOT NULL,
+  `file_desc` varchar(300) NOT NULL,
+  `file_adder` varchar(50) NOT NULL,
+  `file_from` varchar(50) NOT NULL,
+  `file_to` varchar(50) NOT NULL,
+  `file_completed` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,17 +72,24 @@ INSERT INTO `department` (`ID`, `Department`) VALUES
 
 CREATE TABLE `roles` (
   `ID` int(11) NOT NULL,
+  `Department` varchar(30) NOT NULL,
   `Role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `roles`
+-- Table structure for table `track`
 --
 
-INSERT INTO `roles` (`ID`, `Role`) VALUES
-(1, 'JO'),
-(2, 'KO'),
-(3, 'hO');
+CREATE TABLE `track` (
+  `id` int(11) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `file_id` varchar(50) NOT NULL,
+  `operation` int(11) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `tstamp` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -87,9 +102,10 @@ CREATE TABLE `users` (
   `NAME` varchar(50) NOT NULL,
   `EMAIL` varchar(50) NOT NULL,
   `PHONE` int(10) NOT NULL,
-  `DEPARTMENT` int(2) NOT NULL,
+  `DEPARTMENT` varchar(30) NOT NULL,
   `PASSWORD` varchar(8) NOT NULL,
-  `ROLE` int(2) NOT NULL,
+  `ROLE` varchar(30) NOT NULL,
+  `isAdmin` int(11) NOT NULL,
   `gauthkey` varchar(30) NOT NULL,
   `Status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -98,10 +114,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `NAME`, `EMAIL`, `PHONE`, `DEPARTMENT`, `PASSWORD`, `ROLE`, `gauthkey`, `Status`) VALUES
-(1, 'RAHULMISHRA', 'a@a.con', 1234567890, 3, '12345678', 2, '', 1),
-(2, 'HelloWorld', '', 1234567895, 1, '12345678', 2, 'WSQV2W65ITXBEVVM', 0),
-(21, 'RahulMishrak', 'kumarrahul.allduniv@gmail.com', 2147483647, 1, '12345678', 2, 'QZ27GF6GJNE5LWMA', 0);
+INSERT INTO `users` (`ID`, `NAME`, `EMAIL`, `PHONE`, `DEPARTMENT`, `PASSWORD`, `ROLE`, `isAdmin`, `gauthkey`, `Status`) VALUES
+(23, 'SugamKumar', 'sugam@email.com', 2147483647, 'COE', '12312312', 'JO', 1, 'TNKXR2TOOCYDQCMX', 1);
 
 --
 -- Indexes for dumped tables
@@ -120,10 +134,22 @@ ALTER TABLE `department`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `track`
+--
+ALTER TABLE `track`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -140,25 +166,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `access`
 --
 ALTER TABLE `access`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `track`
+--
+ALTER TABLE `track`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
