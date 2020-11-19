@@ -8,12 +8,12 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -37,12 +37,11 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select File</h4>
     <select class="browser-default custom-select custom-select-md" name="sfiles" id="sfiles" value="<?php echo set_select('sfiles'); ?>">
-        <option value="" disabled>Select File Title</option>
+        <option value="">Select File Title</option>
         <?php 
-print_r($sfile);
 foreach($sfile as $row)
 { 
-  echo '<option value="'.$row->file_id.'">'.$row->file_title.'</option>';
+  echo '<option value="'.$row->file_id.'">'.$row->file_id.'</option>';
 }
 ?>
     </select>
@@ -69,7 +68,7 @@ $(document).ready(function(){
     e.preventDefault();
     var u=$('#sfiles').val();
     $.ajax({
-      url:"https://filetracking.velomia.tech//File/get_addedFiles",
+      url:"https://172.1696.251/User/get_addedFiles",
       method:"POST",
       data:{sfiles:u},
       success:function(data)

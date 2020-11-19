@@ -4,6 +4,12 @@ require_once('GoogleAuthenticator.php');
 
 class Authenticator extends CI_Controller {
 
+   function __construct()
+	{
+	parent::__construct();
+	if($this->session->userdata('USER')==null)
+	redirect('/');
+	}
     public function index()
 	{
         if($this->session->userdata('isa')==""){
@@ -23,7 +29,7 @@ class Authenticator extends CI_Controller {
     }
     public function panel()
     {
-        if($this->session->userdata('USER')!=null)
+        if($this->session->userdata('USER')!=null && $this->session->userdata('isa')->isAdmin==1)
         $this->load->view('panel');
         else
         redirect("Welcome/index");
@@ -38,14 +44,15 @@ class Authenticator extends CI_Controller {
             $user="kumarrahul.allduniv@gmail.com";
             $secret=$this->session->userdata('secr');
             $key=$this->input->post('password');
-            $checkResult = $ga->verifyCode($secret, $key, 2000);
+          $this->session->set_userdata('tfa',$key);
+            $checkResult = $ga->verifyCode($secret, $key, 200);
             if($checkResult)
             {
                 if($this->session->userdata('isa')->isAdmin==1)
                 $this->load->view('panel');
                 else
                 {
-                    $this->load->view('upanel');  
+                    redirect('https://172.1696.251/File');  
                 }
             }
             else{

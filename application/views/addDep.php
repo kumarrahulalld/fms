@@ -8,13 +8,13 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -29,7 +29,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="https://filetracking.velomia.tech//User/adddepart">
+                <form method="post" action="https://172.1696.251//User/adddepart">
                 <div class="row">
 
                   

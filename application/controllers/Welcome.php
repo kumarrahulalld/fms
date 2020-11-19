@@ -37,7 +37,7 @@ class Welcome extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules("email","Email","required|valid_email");
-		$this->form_validation->set_rules("password","Password","required|min_length[8]|max_length[8]");
+		$this->form_validation->set_rules("password","Password","required|min_length[8]");
 		if($this->form_validation->run())
 		{
 			$this->load->model('check_login');
@@ -53,6 +53,7 @@ class Welcome extends CI_Controller {
 				$this->session->set_userdata('USER', $id->EMAIL);
 				$this->session->set_userdata('SECU', $id->gauthkey);
 				$this->session->set_userdata('isa',$id);
+		
 				redirect('Authenticator/index');
 			}
 			else{

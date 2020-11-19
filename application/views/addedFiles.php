@@ -7,19 +7,24 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                     <li class="nav-item" role="presentation"><a class="nav-link font-weight-bold" href="#"><?php echo  "Welcome - ". $this->session->userdata('isa')->NAME . "(". $this->session->userdata('isa')->DEPARTMENT ."-".$this->session->userdata('isa')->ROLE .")" ?></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link font-weight-bold" href="https://172.1696.251//File">Home</a></li>
+                    
+                    <li class="nav-item" role="presentation"><a class="nav-link font-weight-bold" href="https://172.1696.251//File/logout">Log Out</a></li>
+
+               
                 </ul>
             </div>
         </div>
     </nav>
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="card rounded mx-auto d-block m-4">
 
             <!-- Card -->
-            <div class="card card-cascade narrower">
+           
 
               <!-- Card image -->
               <h5 class="card-header info-color white-text text-center py-4">
-    <strong>Added Files By You.</strong>
+    <strong>File Created By Me</strong>
   </h5>   
               <!-- Card image -->
 
@@ -36,12 +41,12 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select File</h4>
     <select class="browser-default custom-select custom-select-md" name="sfiles" id="sfiles" value="<?php echo set_select('sfiles'); ?>">
-        <option value="" disabled>Select File Title</option>
+        <option value="">Select File Title</option>
         <?php 
 print_r($sfile);
 foreach($sfile as $row)
 { 
-  echo '<option value="'.$row->file_id.'">'.$row->file_title.'</option>';
+  echo '<option value="'.$row->file_id.'">'.$row->file_id.'</option>';
 }
 ?>
     </select>
@@ -69,7 +74,7 @@ $(document).ready(function(){
     e.preventDefault();
     var u=$('#sfiles').val();
     $.ajax({
-      url:"https://filetracking.velomia.tech//File/get_addedFiles",
+      url:"https://172.1696.251//File/get_addedFiles",
       method:"POST",
       data:{sfiles:u},
       success:function(data)
@@ -83,7 +88,7 @@ $(document).ready(function(){
     e.preventDefault();
     var u=$('#sfiles').val();
     $.ajax({
-      url:"https://filetracking.velomia.tech//File/get_trackFile",
+      url:"https://172.1696.251//File/get_trackFile",
       method:"POST",
       data:{sfiles:u},
       success:function(data)

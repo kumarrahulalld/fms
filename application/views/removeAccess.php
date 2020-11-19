@@ -8,12 +8,12 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -28,7 +28,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="https://filetracking.velomia.tech//User/rAccess">
+                <form method="post" action="https://172.1696.251//User/rAccess">
 <div class="row">
 
                   
@@ -37,7 +37,7 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select Department</h4>
     <select class="browser-default custom-select custom-select-md" name="dep" id="dep" value="<?php echo set_select('dep'); ?>">
-    <option value="" disabled>Select Department</option>
+    <option value="" >Select Department</option>
         <?php 
 
             foreach($user as $row)
@@ -58,7 +58,7 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select Role</h4>
     <select class="browser-default custom-select custom-select-md" name="role" id="role" value="<?php echo set_select('role'); ?>">
-        <option value="" disabled>Select Role</option>
+        <option value="" >Select Role</option>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
   </div>
@@ -74,7 +74,7 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select To Department</h4>
     <select class="browser-default custom-select custom-select-md" name="tdep" id="tdep" value="<?php echo set_select('tdep'); ?>">
-        <option value="" disabled>Select Department</option>
+        <option value="" >Select Department</option>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('tdep');?></span>
   </div>
@@ -88,7 +88,7 @@ include('Header.php');
   <div class="md-form mb-0">
       <h4 class="text-center">Select To Role</h4>
     <select class="browser-default custom-select custom-select-md" name="trole" id="trole" value="<?php echo set_select('trole'); ?>">
-        <option value="" disabled>Select Role</option>
+        <option value="" >Select Role</option>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('trole');?></span>
   </div>
@@ -108,7 +108,7 @@ include('Header.php');
       var u=$('#role').val();
       var d=$('#dep').val();
       $.ajax({
-        url:"https://filetracking.velomia.tech//User/get_tdep",
+        url:"https://172.1696.251//User/get_tdep",
         method:"POST",
         data:{role:u,dep:d},
         success:function(data)
@@ -122,7 +122,7 @@ include('Header.php');
     $('#dep').change(function(){
       var u=$('#dep').val();
       $.ajax({
-        url:"https://filetracking.velomia.tech//User/get_trole",
+        url:"https://172.1696.251//User/get_trole",
         method:"POST",
         data:{dep:u},
         success:function(data)
@@ -138,7 +138,7 @@ include('Header.php');
       var d=$('#dep').val();
       var t=$('#tdep').val();
       $.ajax({
-        url:"https://filetracking.velomia.tech//User/get_torole",
+        url:"https://172.1696.251//User/get_torole",
         method:"POST",
         data:{role:u,dep:d,tdep:t},
         success:function(data)

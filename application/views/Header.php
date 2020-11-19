@@ -23,7 +23,125 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/mdb.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.9/dist/summernote.min.css" rel="stylesheet">
+  <script src="http://cdn.jsdelivr.net/npm/summernote@0.8.9/dist/summernote.js" defer></script>
+    <style>
+        .card{
+            margin:20px;
+           
+        }
+      
+      
+      
+      #overlay {
+  background: #ffffff;
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+  opacity: .80;
+}
+
+.spinner {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid firebrick;
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+    
+    </style>
+   
+   <script>
+window.location.hash="no-back-button";
+window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
+window.onhashchange=function(){window.location.hash="no-back-button";}
+</script>
+  
+   <!-- <script src="https://cdn.tiny.cloud/1/ogsk2kzssbjqaj3wbcyop6sq0sfm1ily9xv7yjmvok6m47gt/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+  
 </head>
 
 <body>
+   <script>
+let userAgentString =  
+                navigator.userAgent; 
+          
+            // Detect Chrome 
+            let chromeAgent =  
+                userAgentString.indexOf("Chrome") > -1; 
+          
+            // Detect Internet Explorer 
+            let IExplorerAgent =  
+                userAgentString.indexOf("MSIE") > -1 ||  
+                userAgentString.indexOf("rv:") > -1; 
+          
+            // Detect Firefox 
+            let firefoxAgent =  
+                userAgentString.indexOf("Firefox") > -1; 
+          
+            // Detect Safari 
+            let safariAgent =  
+                userAgentString.indexOf("Safari") > -1; 
+                  
+            // Discard Safari since it also matches Chrome 
+            if ((chromeAgent) && (safariAgent))  
+                safariAgent = false; 
+          
+            // Detect Opera 
+            let operaAgent =  
+                userAgentString.indexOf("OP") > -1; 
+                  
+            // Discard Chrome since it also matches Opera      
+            if ((chromeAgent) && (operaAgent))  
+                chromeAgent = false; 
+if(chromeAgent)
+{
+}
+else
+  {
+document.write('<div id="overlay" style="display:block;"><div class="spinner"></div><br/><strong>This Browser is not Supported. Please Use Chrome Browser.</strong></div>');
+    $('#overlay').fadeIn().delay(2000).fadeOut();
+  }
+     
+  </script>
+  <div class="header blue">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <img   src="https://172.1696.251/admingif/lo.png" class="img-fluid mx-auto col-md-12 " style="height:100px;" alt="Unversity Logo " >
+        </div>
+        <div class="col-sm">
+          
+          <img   src="https://172.1696.251/admingif/ul.png" class="img-fluid mx-auto col-md-12 " style="height:100px;" alt="Unversity Logo " >
+        </div>
+      </div>
+    </div>
+    
+   
+  </div>
+    
+
+      
+
+
+
 <?php echo $this->session->flashdata('response'); ?>
+
+

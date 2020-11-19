@@ -28,13 +28,18 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class=" btn nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="row">
+    <div class="col-sm">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_XWI5PX.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+    </div>
+    <div class="col-sm">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -49,7 +54,7 @@ include('Header.php');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="https://filetracking.velomia.tech//User/update">
+                <form method="post" action="https://172.1696.251//User/update">
                   <!-- First row -->
 
                  
@@ -94,7 +99,7 @@ include('Header.php');
                     <div class="md-form">
                     <h6 class="text-center">Select Department</h6>
     <select class="browser-default custom-select custom-select-md" id="dep" name="dep" value="<?php echo set_select('dep'); ?>">
-        <option value="" disabled>Select Department</option>
+        <option value="" >Select Department</option>
         <?php 
 
             foreach($dep as $row)
@@ -116,8 +121,17 @@ include('Header.php');
                     <div class="col-md-6">
                     <div class="md-form">
                     <h6 class="text-center">Select Role</h6>
-    <select class="browser-default custom-select custom-select-md" name="role" id="role">
-        <option value="<?php echo set_select('role'); ?>"disabled>Select Role</option>
+    <select class="browser-default custom-select custom-select-md" name="role" id="role" value="<?php echo set_select('role'); ?>">
+        <option value="">Select Role</option>
+           <?php 
+
+            foreach($role as $row)
+            { 
+              if($row->Role==$udata[0]->ROLE)
+              echo '<option selected value="'.$row->Role.'">'.$row->Role.'</option>';
+
+            }
+            ?>
     </select>
     <span class="text-danger wrap-text"><?php echo form_error('role');?></span>
 
@@ -147,6 +161,8 @@ include('Header.php');
             <!-- Card -->
 
           </div>
+    </div>     
+    </div>
 <?php include('Footer.php');?>
     <script>
 
@@ -154,7 +170,7 @@ $(document).ready(function(){
   $('#dep').change(function(){
     var u=$('#dep').val();
     $.ajax({
-      url:"https://filetracking.velomia.tech//User/get_addrole",
+      url:"https://172.1696.251//User/get_addrole",
       method:"POST",
       data:{dep:u},
       success:function(data)

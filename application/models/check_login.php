@@ -7,7 +7,7 @@ class check_login extends CI_Model
                 ->where('EMAIL',$data['email'])
                 ->where('PASSWORD',$data['password'])
                 ->where('Status',1)
-                ->get('Users');
+                ->get('users');
         if($q->num_rows()==1){
             return $q->row();
         }

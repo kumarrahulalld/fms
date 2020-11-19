@@ -28,12 +28,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+    <div class="row">
+    <div class="col-sm">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets1.lottiefiles.com/private_files/lf30_XWI5PX.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+    </div>
+    <div class="col-sm">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -48,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="card-body card-body-cascade text-center">
 
                 <!-- Edit Form -->
-                <form method="post" action="https://filetracking.velomia.tech//User/proceed">
+                <form method="post" action="https://172.1696.251//User/proceed">
                 <div class="row">
 
                   
@@ -57,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="md-form mb-0">
       <h4 class="text-center">Select User</h4>
     <select class="browser-default custom-select custom-select-md" name="user" id="user" value="<?php echo set_select('user'); ?>">
-        <option value="" disabled>Select User</option>
+        <option value="">Select User</option>
         <?php 
 
 foreach($user as $row)
@@ -75,6 +81,10 @@ foreach($user as $row)
 </div>
 </div>
 </div>
+</div>
+</div>
+
+
 <?php include('Footer.php');?>
 </body>
 </html>

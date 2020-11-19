@@ -8,12 +8,12 @@ include('Header.php');
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://filetracking.velomia.tech//Authenticator/panel">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="https://172.1696.251//Authenticator/panel">Home</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-<div class="col-lg-8 mb-4 rounded mx-auto d-block m-5">
+<div class="card rounded mx-auto d-block m-5">
 
             <!-- Card -->
             <div class="card card-cascade narrower">
@@ -33,7 +33,7 @@ include('Header.php');
 
 <div class="md-form">
 <select class="browser-default custom-select custom-select-md" id="dep" name="dep" value="<?php echo set_select('dep'); ?>">
-<option value="" disabled>Select Department</option>
+<option value="" >Select Department</option>
 <?php 
 
 foreach($user as $row)
@@ -50,7 +50,7 @@ echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
 <div class="md-form mb-0">
 <h4 class="text-center">Select Role</h4>
 <select class="browser-default custom-select custom-select-md" name="role" id="role" value="<?php echo set_select('role'); ?>">
-<option value="" disabled>Select Role</option>
+<option value="" >Select Role</option>
 <option value="all">Select All</option>
 
 </select>
@@ -73,7 +73,7 @@ echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
       var u=$('#role').val();
       var d=$('#dep').val();
       $.ajax({
-        url:"https://filetracking.velomia.tech//User/get_saccess",
+        url:"https://172.1696.251//User/get_saccess",
         method:"POST",
         data:{role:u,dep:d},
         success:function(data)
@@ -86,7 +86,7 @@ echo '<option value="'.$row->Department.'">'.$row->Department.'</option>';
     $('#dep').change(function(){
       var u=$('#dep').val();
       $.ajax({
-        url:"https://filetracking.velomia.tech//User/get_addrole",
+        url:"https://172.1696.251//User/get_addrole",
         method:"POST",
         data:{dep:u},
         success:function(data)

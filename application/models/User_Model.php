@@ -3,13 +3,26 @@ class User_Model extends CI_Model
 {
      function get_dep()
     {
-        $query = $this->db->query("SELECT * FROM Department ");
+        $query = $this->db->query("SELECT * FROM department ");
         return $query->result();
     }
 
     function get_role()
     {
-        $query = $this->db->query("SELECT * FROM Roles ");
+        $query = $this->db->query("SELECT * FROM roles ");
+        return $query->result();
+    }
+    
+    function get_disrole()
+    {
+        $query = $this->db->query("SELECT DISTINCT Role FROM roles ");
+        return $query->result();
+    }
+    
+    
+     function get_drole()
+    {
+        $query = $this->db->query("SELECT DISTINCT Department FROM roles ");
         return $query->result();
     }
 
@@ -44,7 +57,7 @@ function get_adep($user){
     $q=$this->db->select("department")
         ->where('user', $user)
         ->get('access');
-        $out='<option value=""></option>';
+        $out='<option value="">Select Department</option>';
         foreach($q->result() as $row)
         {
             $out.='<option value="'.$row->department.'">'.$row->department.'</option>';
@@ -70,7 +83,7 @@ function get_arole($dep){
     $q=$this->db->select("frole")
         ->where('fdepartment', $dep)
         ->get('access');
-        $out='<option value="" disabled>Select Role</option>';
+        $out='<option value="">Select Role</option>';
         foreach($q->result() as $row)
         {
             $out.='<option value="'.$row->frole.'">'.$row->frole.'</option>';
@@ -85,7 +98,7 @@ function get_tdep($dep,$role){
         ->where('fdepartment', $dep)
         ->where('frole', $role)
         ->get('access');
-        $out='<option value="" disabled>Select To Department</option>';
+        $out='<option value="">Select To Department</option>';
         foreach($q->result() as $row)
         {
             $out.='<option value="'.$row->tdepartment.'">'.$row->tdepartment.'</option>';
@@ -115,7 +128,7 @@ function get_addrole($dep){
     $q=$this->db->select("*")
         ->where('Department', $dep)
         ->get('roles');
-        $out='<option value="" disabled>Select Role</option>';
+        $out='<option value="">Select Role</option>';
         foreach($q->result() as $row)
         {
             $out.='<option value="'.$row->Role.'">'.$row->Role.'</option>';
@@ -126,19 +139,19 @@ function get_addrole($dep){
 
     function get_user()
     {
-        $query = $this->db->query("SELECT * FROM Users ");
+        $query = $this->db->query("SELECT * FROM users ");
         return $query->result();
     }
 
     function get_decuser()
     {
-        $query = $this->db->query("SELECT * FROM Users WHERE Status='0'");
+        $query = $this->db->query("SELECT * FROM users WHERE Status='0'");
         return $query->result();
     }
 
     function get_actuser()
     {
-        $query = $this->db->query("SELECT * FROM Users WHERE Status='1'");
+        $query = $this->db->query("SELECT * FROM users WHERE Status='1'");
         return $query->result();
     }
 function get_showuser($user)
@@ -187,7 +200,7 @@ $q=$this->db->select("*")
 function get_showaccess($dep,$role)
 {
 
-    if($roles==="all")
+    if($role==="all")
     {
         $q=$this->db->select("*")
         ->where('fdepartment',$dep)
@@ -299,13 +312,13 @@ $q=$this->db->select("*")
 
     function getUdetail($uid)
     {
-        $query = $this->db->query("SELECT * FROM Users WHERE ID='$uid' ");
+        $query = $this->db->query("SELECT * FROM users WHERE ID='$uid' ");
         return $query->result();
     }
     function updateUser($data)
     {
     $this->db->where('id', $this->session->userdata('uid'));
-    if($this->db->update('Users', $data))
+    if($this->db->update('users', $data))
     return 1;
     else 
     return 0;
@@ -317,7 +330,7 @@ $q=$this->db->select("*")
             "Status"=>"1"
         );
         $this->db->where('id', $uid);
-        if($this->db->update('Users', $data))
+        if($this->db->update('users', $data))
         return 1;
         else 
         return 0;
@@ -356,14 +369,14 @@ else{
             "Status"=>"0"
         );
         $this->db->where('id', $uid);
-        if($this->db->update('Users', $data))
+        if($this->db->update('users', $data))
         return 1;
         else 
         return 0;
     }
     function add($data)
     {
-        if($this->db->insert('Users',$data))
+        if($this->db->insert('users',$data))
         return 1;
         else
         return 0;
